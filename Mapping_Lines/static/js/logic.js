@@ -10,7 +10,7 @@ let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
     tileSize: 512,
     maxZoom: 18,
     zoomOffset: -1,
-    id: "mapbox/dark-v10",
+    id: "mapbox/light-v10",
     accessToken: API_KEY
 });
 
@@ -20,14 +20,22 @@ streets.addTo(map);
 // Get data from cities.js.
 let cityData = cities;
 
+// Coordinates for each point to be used in the polyline will be held here.
+let line = [];
+
 // Loop through the cities array and create one marker for each city.
 cityData.forEach(function(city) {
     console.log(city)
-    L.circleMarker(city.location, {
-        radius: city.population/100000,
-        color: "orange",
-        weight: 4
-    })
-    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Population: " + city.population.toLocaleString() + "</h3>")
+    line.push(city.location);
+    L.marker(city.location)
+    .bindPopup("<h2>" + city.city + ", " + city.state + "</h2> <hr> <h3>Airport: " + city.airport + "</h3>")
     .addTo(map);
 });
+
+// Create a polyline using the line coordinates.
+L.polyline(line, {
+    color: "blue",
+    weight: 4,
+    opacity: 0.5,
+    dashArray: "10"
+}).addTo(map);

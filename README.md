@@ -6,12 +6,18 @@ The client wishes to assemble a web page with an interactive map that points out
 ## Resources
 
 ### Data Sources
+These JSON files are not part of the project and are used only for practicing and demonstrating concepts of mapping GeoJSON data (found on the `Mapping_GeoJSON_Points` branch, the `Mapping_GeoJSON_Linestrings` branch, and the `Mapping_GeoJSON_Polygons` branch):
+
+- majorAirports.json
+- torontoRoutes.json
+- torontoNeighborhoods.json
 
 ### Web Resources
 
 - Mapbox - Static Maps API (API Key required)
 - Leaflet - Version 1.9.3
 - USGS Earthquake Hazards Program - https://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+- fraxen's tectonicplates Repository - https://github.com/fraxen/tectonicplates/tree/master/GeoJSON
 
 This web page was created in early-to-mid December of 2022; all HTML, CSS, and JavaScript code are based on the version that is current to this period of time (HTML5 and JS ES6+)
 
@@ -35,12 +41,23 @@ The next branches cover handling GeoJSON objects to plot on the map. One runs th
 
 One more branch is the actual project branch that maps the earthquake data gathered over seven days from the time the GeoJSON object was requested. The logic script comes in five "copies," each one represents a step in the process:
 
-    1. The first step establishes the Street and Satellite base layers, centers on the United States with a Zoom Level of 3 (allows the viewer to see most of the globe), and places markers on the map to represent every recorded earthquake listed on the GeoJSON object taken from the USGS website.
+1. The first step establishes the Street and Satellite base layers, centers on the United States with a Zoom Level of 3 (allows the viewer to see most of the globe), and places markers on the map to represent every recorded earthquake listed on the GeoJSON object taken from the USGS website.
 
-    2. The second step builds on the D3 function that places markers by making circle markers based on earthquake magnitude. A function that styles and sizes the markers was added in front of the actual marker function, and the function that sizes by magnitude (any with a magnitude of 0 is given the minimum radius) is inserted between these two functions. The GeoJSON layer function (which actually places the markers) is adjusted to place circle markers with the styling function.
+2. The second step builds on the D3 function that places markers by making circle markers based on earthquake magnitude. A function that styles and sizes the markers was added in front of the actual marker function, and the function that sizes by magnitude (any with a magnitude of 0 is given the minimum radius) is inserted between these two functions. The GeoJSON layer function (which actually places the markers) is adjusted to place circle markers with the styling function.
 
-    3. The third step continues by inserting a function that fills the circle marker with a color that corresponds to a certain range of magnitudes. In addition, the GeoJSON layer function adds some code that creates popups that show the magnitude and location of each marked earthquake.
+3. The third step continues by inserting a function that fills the circle marker with a color that corresponds to a certain range of magnitudes. In addition, the GeoJSON layer function adds some code that creates popups that show the magnitude and location of each marked earthquake.
 
-    4. The fourth step sets the GeoJSON layer as a toggleable overlay. A layer for the earthquakes and an object to contain overlays are created; the overlays are added to the layer control. The GeoJSON layer function now gets appended to the earthquakes layer first before being appended to the map in order to allow the layer control to accurately reflect the map.
+4. The fourth step sets the GeoJSON layer as a toggleable overlay. A layer for the earthquakes and an object to contain overlays are created; the overlays are added to the layer control. The GeoJSON layer function now gets appended to the earthquakes layer first before being appended to the map in order to allow the layer control to accurately reflect the map.
 
-    5. The last step adds the legend to the map. After putting the earthquakes layer on the map, the legend is established at the bottom right of the map. Then next lines of code creates an "info" and "legend" class of a HTML section to be inserted into the body when completed, sets up the array of magnitude values, and sets up the array of the matching colors used on the circle markers. A loop runs through the magnitudes array, getting the corresponding color and appending a row into the legend containing the color icon and the magnitude range linked to the color. The final product is added to the map (the CSS file is also updated to account for the newly added legend).
+5. The last step adds the legend to the map. After putting the earthquakes layer on the map, the legend is established at the bottom right of the map. Then next lines of code creates an "info" and "legend" class of a HTML section to be inserted into the body when completed, sets up the array of magnitude values, and sets up the array of the matching colors used on the circle markers. A loop runs through the magnitudes array, getting the corresponding color and appending a row into the legend containing the color icon and the magnitude range linked to the color. The final product is added to the map (the CSS file is also updated to account for the newly added legend).
+
+## Module Challenge
+The Module Challenge involves adding more code to the logic script to add additional features. The first deliverable adds another layer to draw the tectonic plate boundaries on the global map. The second deliverable adds one more layer to mark only the major earthquakes (magnitude greater than 4.5) on the global map. The last deliverable adds more base layers to the map.
+
+### Tectonic Plates
+The added lines of code introduce the Tectonic Plates overlay to the map. The new layer is created and added to the overlays object, and a D3 JSON method is called to retrieve the tectonic plate line coordinates from the `tectonicplates` GitHub Repository by `fraxen`. The lines are created with the GeoJSON layer function and styled before adding to the tectonic layer and then the map.
+
+### Major Earthquakes
+
+
+### More Base Layers

@@ -58,6 +58,8 @@ The Module Challenge involves adding more code to the logic script to add additi
 The added lines of code introduce the Tectonic Plates overlay to the map. The new layer is created and added to the overlays object, and a D3 JSON method is called to retrieve the tectonic plate line coordinates from the `tectonicplates` GitHub Repository by `fraxen`. The lines are created with the GeoJSON layer function and styled before adding to the tectonic layer and then the map.
 
 ### Major Earthquakes
+The script for the Major Earthquakes overlay is nearly identical to the script for the main earthquakes overlay. The only differences are the source of data and the color scale for the magnitudes. Major Earthquakes primarily cover earthquakes with a magnitude greater than 4.5, so three colors are used. Two are carried over from the original color scale, but the third is added to account for magnitudes greater than 6. This color is not included in the legend, but that it exists only in the Major Earthquakes layer alongside two other colors carried from the main earthquakes layer should allow it to stand out especially as particularly large circle markers.
 
+The legend function is moved to the Major Earthquakes function so that it stays at the bottom near the end of the logic file.
 
 ### More Base Layers

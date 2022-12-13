@@ -63,3 +63,4 @@ The script for the Major Earthquakes overlay is nearly identical to the script f
 The legend function is moved to the Major Earthquakes function so that it stays at the bottom near the end of the logic file.
 
 ### More Base Layers
+Code is added at the tile layers section with lines inserted into the base layers object to include more map styles. Two more styles are added: The Outdoors style and the Dark style. A quick check verifies that the earthquake markers and the tectonic plate lines still stand out visibly in these additional two maps.
